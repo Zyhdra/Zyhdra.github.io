@@ -77,52 +77,22 @@ if (deck) {
   layout();
 }
 
-// Temporary color picker, used to choose a palette. Delete once one is picked.
-const THEMES = [
-  ["cobalt", "Cobalt", "#f3f1ee", "#2546a8"],
-  ["navy-maroon", "Navy & Maroon", "#f4f1ef", "#1b3a7a"],
-  ["electric", "Electric Blue", "#fafafa", "#2541ff"],
-  ["sky", "Sky", "#edf3fa", "#2f7de1"],
-  ["royal-stone", "Royal & Stone", "#e9e4dc", "#233d9b"],
-  ["powder", "Powder & Navy", "#dfe8f3", "#1d3c78"],
-  ["petrol", "Petrol Blue", "#f0f4f3", "#1f6f99"],
-  ["blush", "Blue on Blush", "#f6ecea", "#2b4cc4"],
-  ["denim", "Denim", "#e6e9ee", "#3a5f9f"],
-  ["midnight", "Midnight", "#0d1b33", "#4f8cff"],
-  ["maroon", "Texas State Maroon", "#f4efec", "#7a1f2b", 1],
-  ["gold", "Stole Gold & Navy", "#f3f0ea", "#a8741a", 1],
-  ["forest", "Forest Green", "#eef1ec", "#2f5d3a", 1],
-  ["orange", "Vipers Orange", "#f6f2ee", "#d9541e", 1],
-  ["terracotta", "Terracotta", "#f3ece6", "#b5542f", 1],
-  ["plum", "Plum", "#f4eff4", "#5b2a6e", 1],
-  ["crimson", "Crimson", "#f7f3f2", "#b3123a", 1],
-  ["olive", "Olive", "#efefe6", "#5e6b2f", 1],
-  ["charcoal", "Charcoal & Red", "#f2f2f0", "#1f1f1f", 1],
-  ["espresso", "Espresso", "#241912", "#e0a46a", 1],
-];
-const picker = document.createElement("div");
-picker.className = "picker";
-picker.innerHTML = `<span class="picker__name"></span><div class="picker__row"></div><div class="picker__row"></div>`;
-const nameEl = picker.querySelector(".picker__name");
-const [rowBlue, rowOther] = picker.querySelectorAll(".picker__row");
-const row = picker;
-const setTheme = (id) => {
-  document.documentElement.dataset.theme = id;
-  try { localStorage.setItem("sk-theme", id); } catch {}
-  const t = THEMES.find((x) => x[0] === id) || THEMES[0];
-  nameEl.textContent = `Colors: ${t[1]}`;
-  row.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.id === id)));
+// Light / dark mode. The head script already applied the saved or system choice.
+const modeBtn = document.querySelector(".mode");
+const root = document.documentElement;
+const syncMode = () => {
+  const dark = root.dataset.mode === "dark";
+  modeBtn?.setAttribute("aria-pressed", String(dark));
 };
-THEMES.forEach(([id, name, a, b, other]) => {
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.dataset.id = id;
-  btn.title = name;
-  btn.setAttribute("aria-label", name);
-  btn.style.setProperty("--a", a);
-  btn.style.setProperty("--b", b);
-  btn.addEventListener("click", () => setTheme(id));
-  (other ? rowOther : rowBlue).appendChild(btn);
+modeBtn?.addEventListener("click", () => {
+  root.dataset.mode = root.dataset.mode === "dark" ? "light" : "dark";
+  try { localStorage.setItem("sk-mode", root.dataset.mode); } catch {}
+  syncMode();
 });
-document.body.appendChild(picker);
-setTheme(document.documentElement.dataset.theme || "maroon");
+// Follow the system setting until the visitor picks one themselves.
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  let saved = null;
+  try { saved = localStorage.getItem("sk-mode"); } catch {}
+  if (!saved) { root.dataset.mode = e.matches ? "dark" : "light"; syncMode(); }
+});
+syncMode();

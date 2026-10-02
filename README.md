@@ -3,8 +3,8 @@
 Static site (plain HTML/CSS/JS, no build step) for GitHub Pages.
 
 - `index.html`, `experience.html`, `projects.html`, `personal.html` — the four pages
-- `assets/css/site.css` — all styles; color schemes are the `[data-theme]` blocks at the top
-- `assets/js/site.js` — small interactions, plus a temporary color picker (remove once a scheme is chosen)
+- `assets/css/site.css` — all styles; the maroon & charcoal colors (light and `[data-mode="dark"]`) are at the top
+- `assets/js/site.js` — small interactions: dark mode toggle, Inductiv phone screens, piano clips, dog deck
 - `variants/` — design explorations; open `variants/compare.html` to flip through them
 - `archive/record-sleeve/` — the earlier "Record Sleeve" version
 
