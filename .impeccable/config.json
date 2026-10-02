@@ -20,6 +20,15 @@
         ],
         "createdAt": "2026-10-02T04:01:00.540Z",
         "reason": "Claude triage: hits are the two pre-existing one-line photo captions (41/43 chars) in the site-wide uppercase .label style, not body passages"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "personal.html"
+        ],
+        "createdAt": "2026-10-02T04:14:23.981Z",
+        "reason": "Owner picked the maroon & charcoal palette (incl. its #f4efec ground) after previewing it live in Chrome, 2026-10-01"
       }
     ]
   }
