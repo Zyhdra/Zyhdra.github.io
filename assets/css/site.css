@@ -797,6 +797,16 @@ a:hover .icon {
 .duo-grid .photo:first-child {
   aspect-ratio: auto;
 }
+.quad-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.quad-grid .photo {
+  aspect-ratio: 3 / 4;
+}
+
 .duo-grid .photo:first-child img {
   position: absolute;
   inset: 0;
@@ -1078,6 +1088,9 @@ a:hover .icon {
   }
   .duo-grid .photo:first-child {
     aspect-ratio: 16 / 10;
+  }
+  .quad-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .clips {
     grid-template-columns: none;
