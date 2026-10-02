@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidebar Teal · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #eef5f5; --fg: #0f2e36; --soft: #48636a; --accent: #12808d; --side: #0f2e36; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { min-height: 100svh; display: grid; grid-template-columns: minmax(260px, 340px) 1fr; }
+  aside { background: var(--side); color: #e7f2f3; padding: 32px; display: flex; flex-direction: column; gap: 28px; }
+  aside .face { width: 112px; height: 112px; border-radius: 50%; overflow: hidden; } aside .face img { width: 100%; height: 100%; object-fit: cover; }
+  aside h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; } aside .label { color: #8fd3db; }
+  aside nav { display: grid; gap: 4px; } aside nav a { padding: 8px 12px; border-radius: 8px; color: #b9d4d8; } aside nav a[aria-current] { background: rgb(255 255 255 / .1); color: #fff; }
+  aside .links { margin-top: auto; display: grid; gap: 10px; } aside .links a { display: flex; justify-content: space-between; color: #e7f2f3; }
+  main { padding: clamp(32px, 7vw, 120px); display: grid; align-content: center; gap: 28px; }
+  main .big { font-size: clamp(2rem, 3.6vw, 3.4rem); line-height: 1.15; letter-spacing: -0.02em; font-weight: 550; max-width: 22ch; }
+  main .big em { font-style: normal; color: var(--accent); }
+  main .meta { color: var(--soft); display: grid; gap: 4px; }
+  main .now { display: flex; gap: 16px; align-items: center; padding: 18px 22px; border-radius: 14px; background: #fff; max-width: 34rem; box-shadow: 0 1px 2px rgb(15 46 54 / .08); }
+  main .now b { color: var(--accent); }
+  @media (max-width: 820px) { .wrap { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="rise"><div class="face"><img src="../assets/img/me/face.jpg" alt="Steven Kertes" width="480" height="480"></div><div><h1>Steven Kertes</h1><p class="label">Class of Dec 2026</p></div><nav class="label"><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav><div class="links"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></aside>
+  <main><p class="big rise d1">I build software <em>end to end</em>, from the first conversation with a user to the shipped app.</p>
+  <p class="rise d2" style="max-width:52ch;color:var(--soft)">Engineer and founder, looking for full-time roles in software, AI, solutions, and product engineering after I graduate in December.</p>
+  <div class="meta label rise d3"><span>Texas State University · B.S. Computer Science, Minor in Mathematics</span><span>New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</span></div>
+  <div class="now rise d4"><span>Currently building</span> <b>Inductiv</b> <span style="color:var(--soft)">· clinical tracking for nurse anesthesia programs</span></div></main>
+</div>
+</body>
+</html>

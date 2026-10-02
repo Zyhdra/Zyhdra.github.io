@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magazine Cover · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #0f2342; --fg: #f4f1ea; --soft: #d4dbe7; --accent: #e3b65b; }
+  img { display: block; max-width: 100%; }
+
+  .cover { position: relative; min-height: 100svh; overflow: hidden; display: grid; grid-template-rows: auto auto 1fr auto; padding: clamp(16px, 3vw, 44px); }
+  .cover > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 30%; z-index: -2; }
+  .cover::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(15 35 66 / .92) 0%, rgb(15 35 66 / .55) 45%, rgb(15 35 66 / .1) 75%), linear-gradient(0deg, rgb(15 35 66 / .85), transparent 40%); }
+  header { display: flex; justify-content: space-between; } header nav { display: flex; gap: 24px; } nav a { color: var(--soft); } nav a[aria-current] { color: var(--accent); }
+  h1 { font-family: "League Gothic"; font-weight: 400; text-transform: uppercase; font-size: clamp(6rem, 16vw, 14rem); line-height: 0.82; margin-top: 2vh; letter-spacing: 0.01em; }
+  h1 span { color: var(--accent); }
+  .lines { align-self: end; display: grid; gap: 18px; max-width: 30rem; }
+  .lines .hl { font-size: 1.35rem; line-height: 1.35; font-weight: 600; } .lines .hl b { color: var(--accent); font-weight: 600; }
+  .foot { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-top: 32px; padding-top: 18px; border-top: 1px solid rgb(244 241 234 / .25); }
+  .foot .links { display: flex; gap: 22px; flex-wrap: wrap; } .foot .links a { display: inline-flex; gap: 6px; font-weight: 600; } .foot .label { color: var(--soft); }
+</style>
+</head>
+<body>
+<div class="cover"><img src="../assets/img/me/grad-full.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career" width="2400" height="1600">
+  <header class="label rise"><span>Class of Dec 2026</span><nav><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+  <h1 class="rise d1">Steven<br><span>Kertes</span></h1>
+  <div class="lines rise d2"><p class="hl"><b>Engineer &amp; founder.</b> Building Inductiv, a clinical tracking platform for nurse anesthesia programs.</p><p style="color:var(--soft)">Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p></div>
+  <div class="foot rise d3"><div class="links"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><span class="label">New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</span></div>
+</div>
+</body>
+</html>

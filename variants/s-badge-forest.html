@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lanyard Badge · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #e7ece6; --fg: #17261d; --soft: #4f6155; --accent: #2f6b45; --strap: #2f6b45; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 32px; padding: 0 clamp(16px, 5vw, 80px); }
+  header { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 24px clamp(16px, 5vw, 80px); } header nav { display: flex; gap: 24px; } nav a[aria-current] { color: var(--accent); }
+  .txt h1 { font-weight: 750; font-size: clamp(2.8rem, 5.6vw, 5.2rem); line-height: .95; letter-spacing: -0.04em; }
+  .txt p { color: var(--soft); max-width: 42ch; margin-top: 22px; }
+  .links { display: grid; margin-top: 28px; max-width: 26rem; } .links a { display: flex; justify-content: space-between; padding: 12px 0; border-top: 1px solid #c9d3ca; font-weight: 600; } .links a:hover { color: var(--accent); }
+  .hang { justify-self: center; display: grid; justify-items: center; transform-origin: 50% 0; animation: swing 4.5s ease-in-out infinite; }
+  .hang:hover { animation-duration: 1.4s; }
+  @keyframes swing { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+  .strap { width: 34px; height: 16vh; background: repeating-linear-gradient(0deg, var(--strap) 0 14px, #3c8256 14px 16px); margin-top: 0; border-radius: 0 0 4px 4px; }
+  .clip { width: 46px; height: 26px; border-radius: 6px; background: linear-gradient(#cfd6d1, #8e9a92); margin-top: -4px; }
+  .badge { width: min(320px, 70vw); background: #fff; border-radius: 18px; padding: 18px; margin-top: -6px; box-shadow: 0 30px 50px -24px rgb(23 38 29 / .5); }
+  .badge .hole { width: 56px; height: 10px; border-radius: 999px; background: var(--bg); margin: 0 auto 14px; }
+  .badge img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 45% 20%; border-radius: 10px; }
+  .badge h2 { font-size: 1.7rem; font-weight: 750; letter-spacing: -0.02em; margin-top: 14px; }
+  .badge .role { color: var(--accent); margin-top: 4px; } .badge .bar { margin-top: 16px; padding: 10px 12px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; justify-content: space-between; }
+  @media (max-width: 860px) { .wrap { grid-template-columns: 1fr; padding-top: 90px; } .hang { order: -1; } .strap { height: 12vh; margin-top: 0; } }
+  @media (prefers-reduced-motion: reduce) { .hang { animation: none; } }
+</style>
+</head>
+<body>
+<header class="label rise"><strong>Steven Kertes</strong><nav><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+<div class="wrap">
+  <div class="txt"><h1 class="rise">Hi, I'm Steven.</h1><p class="rise d1">Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p><p class="label rise d2" style="color:var(--accent)">New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p><div class="links rise d3"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+  <div class="hang rise d1"><div class="strap"></div><div class="clip"></div>
+    <div class="badge"><div class="hole"></div><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career"><h2>Steven Kertes</h2><p class="role label">Engineer · Founder</p><p style="color:var(--soft);font-size:.9rem;margin-top:6px">Texas State · CS + Math · Dec 2026</p><div class="bar label"><span>Inductiv</span><span>Hire me</span></div></div></div>
+</div>
+
+</body>
+</html>

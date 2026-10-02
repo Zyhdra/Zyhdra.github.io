@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiet Navy · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #f6f7f9; --fg: #14284b; --soft: #4a5873; --accent: #8a5a3b; --rule: #d6dbe4; }
+  .wrap { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 0 clamp(16px, 5vw, 80px); }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 26px 0; gap: 20px; flex-wrap: wrap; }
+  header .mark { font-weight: 700; font-stretch: 110%; letter-spacing: -0.01em; }
+  nav { display: flex; gap: clamp(16px, 3vw, 36px); }
+  nav a { color: var(--soft); transition: color .3s; }
+  nav a:hover, nav a[aria-current] { color: var(--fg); }
+  nav a[aria-current] { box-shadow: 0 2px 0 var(--accent); }
+  .photo { margin: 0; height: min(68vh, 640px); aspect-ratio: 4 / 5; justify-self: end; border-radius: 6px; overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .links { margin-top: 36px; max-width: 30rem; }
+  main { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px clamp(40px, 8vw, 140px); align-items: center; padding: 3vh 0 5vh; }
+  h1 { font-weight: 750; font-stretch: 112%; font-size: clamp(3.25rem, 6.5vw, 6rem); line-height: 0.92; letter-spacing: -0.035em; }
+  h1 span { color: var(--accent); }
+  .lede { margin-top: 32px; font-size: clamp(1.125rem, 1.5vw, 1.3rem); line-height: 1.5; color: var(--soft); max-width: 36ch; }
+  .meta { margin-top: 24px; color: var(--accent); display: grid; gap: 4px; }
+  .links li a { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-top: 1px solid var(--rule); font-weight: 600; transition: color .3s, padding .45s cubic-bezier(.16,1,.3,1); }
+  .links li:last-child a { border-bottom: 1px solid var(--rule); }
+  .links a:hover { color: var(--accent); }
+  footer { padding: 22px 0; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; color: var(--soft); gap: 16px; flex-wrap: wrap; }
+  @media (max-width: 800px) { main { grid-template-columns: 1fr; align-items: start; } .photo { justify-self: start; height: auto; width: 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="rise">
+    <span class="mark">Steven Kertes</span>
+    <nav class="label"><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav>
+  </header>
+  <main>
+    <div>
+      <h1 class="rise d1">Steven Kertes<span>.</span></h1>
+      <p class="lede rise d2">Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app. Graduating December 2026 and looking for full-time roles in software, AI, solutions, and product engineering.</p>
+      <div class="meta label rise d3">
+        <span>Texas State University · B.S. Computer Science, Minor in Mathematics</span>
+        <span>New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</span>
+      </div>
+      <ul class="links rise d4">
+        <li><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
+        <li><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
+        <li><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
+        <li><a href="#">My startup, Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+    </div>
+    <figure class="photo rise d2"><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career" width="1000" height="1250"></figure>
+  </main>
+
+  <footer class="label"><span>Currently building Inductiv</span><span>Class of December 2026</span></footer>
+</div>
+</body>
+</html>

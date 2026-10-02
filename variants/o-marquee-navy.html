@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marquee · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #e9edf4; --fg: #13213d; --soft: #4f5b74; --accent: #2b59c3; --warm: #c46a3a; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; }
+  header { display: flex; justify-content: space-between; padding: 24px clamp(16px, 4vw, 64px); } header nav { display: flex; gap: 26px; } nav a[aria-current] { color: var(--accent); }
+  .stage { position: relative; display: grid; place-items: center; }
+  .track { position: absolute; top: 50%; translate: 0 -50%; display: flex; white-space: nowrap; animation: slide 38s linear infinite; }
+  .track span { font-family: "League Gothic"; text-transform: uppercase; font-size: clamp(9rem, 26vw, 26rem); line-height: 0.8; padding-right: 0.25em; color: var(--accent); }
+  .track span:nth-child(even) { color: transparent; -webkit-text-stroke: 2px var(--accent); }
+  .stage:hover .track { animation-play-state: paused; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  .stage figure { position: relative; margin: 0; width: min(330px, 62vw); aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; box-shadow: 0 40px 60px -30px rgb(0 0 0 / .45); transition: rotate .6s cubic-bezier(.16,1,.3,1); }
+  .stage figure:hover { rotate: -2deg; } .stage figure img { width: 100%; height: 100%; object-fit: cover; }
+  .bottom { display: grid; grid-template-columns: 1fr auto; gap: 20px 48px; padding: 28px clamp(16px, 4vw, 64px) 34px; align-items: end; }
+  .bottom p { max-width: 46ch; color: var(--soft); } .bottom .label { color: var(--warm); margin-top: 10px; }
+  .links { display: flex; gap: 22px; flex-wrap: wrap; } .links a { display: inline-flex; gap: 6px; font-weight: 600; } .links a:hover { color: var(--accent); }
+  @media (max-width: 760px) { .bottom { grid-template-columns: 1fr; } header { flex-wrap: wrap; gap: 10px; } header nav { gap: 14px; flex-wrap: wrap; } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="label rise"><strong>Steven Kertes</strong><nav><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+  <div class="stage"><div class="track" aria-hidden="true"><span>Steven</span><span>Kertes</span><span>Steven</span><span>Kertes</span><span>Steven</span><span>Kertes</span><span>Steven</span><span>Kertes</span></div>
+    <figure class="rise d1"><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career"></figure></div>
+  <div class="bottom rise d2"><div><h1 class="sr-only">Steven Kertes</h1><p>Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p><p class="label">New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p></div><div class="links"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Review screenshots and scratch output from design passes
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+.impeccable/questions/

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Stack · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #efe9e4; --fg: #2a1d16; --soft: #6a574b; --accent: #b4532a; --navy: #1e3358; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { min-height: 100svh; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 32px; padding: 0 clamp(16px, 5vw, 80px); }
+  header { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 24px clamp(16px, 5vw, 80px); } header nav { display: flex; gap: 24px; } nav a[aria-current] { color: var(--accent); }
+  h1 { font-family: "League Gothic"; font-weight: 400; text-transform: uppercase; font-size: clamp(5rem, 11vw, 10rem); line-height: .84; color: var(--navy); } h1 span { color: var(--accent); }
+  .txt p { color: var(--soft); max-width: 42ch; margin-top: 20px; }
+  .links { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 26px; } .links a { display: inline-flex; gap: 6px; font-weight: 600; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+  .stack { position: relative; height: min(72vh, 620px); cursor: pointer; }
+  .print { position: absolute; left: 50%; top: 50%; width: min(330px, 70vw); background: #fff; padding: 12px 12px 46px; box-shadow: 0 24px 40px -22px rgb(42 29 22 / .55); translate: -50% -50%; transition: transform .7s cubic-bezier(.16,1,.3,1), z-index 0s .35s; }
+  .print img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .print figcaption { position: absolute; left: 14px; bottom: 14px; color: var(--soft); }
+  .hint { position: absolute; bottom: 0; width: 100%; text-align: center; color: var(--soft); }
+  @media (max-width: 860px) { .wrap { grid-template-columns: 1fr; padding-top: 100px; } .stack { height: 520px; } }
+</style>
+</head>
+<body>
+<header class="label rise"><strong>Steven Kertes</strong><nav><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+<div class="wrap">
+  <div class="txt"><p class="label rise" style="color:var(--accent);margin:0">Class of December 2026</p><h1 class="rise d1">Steven<br><span>Kertes</span></h1><p class="rise d2">Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p><div class="links rise d3"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+  <div class="stack rise d2" id="stack" tabindex="0" aria-label="Click to shuffle photos">
+    <figure class="print" style="margin:0"><img src="../assets/img/personal/rl-sportsmanship.jpg" alt="Sportsmanship Award screen"><figcaption class="label">Sportsmanship Award</figcaption></figure>
+    <figure class="print" style="margin:0"><img src="../assets/img/personal/rl-player-card.jpg" alt="Rocket League player card" style="object-position:22% 30%"><figcaption class="label">Zyhdra · GC1</figcaption></figure>
+    <figure class="print" style="margin:0"><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career"><figcaption class="label">Texas State, Class of '26</figcaption></figure>
+    <p class="hint label">Click to shuffle</p>
+  </div>
+</div>
+<script>const st=document.getElementById("stack");let order=[...st.querySelectorAll(".print")];const tilt=[-7,5,-1];const lay=()=>order.forEach((p,i)=>{p.style.zIndex=i;p.style.transform="rotate("+tilt[i]+"deg) translate("+(i-1)*14+"px,"+(1-i)*6+"px)";});lay();const next=()=>{const top=order.pop();top.style.transform="rotate(14deg) translate(240px,-20px)";setTimeout(()=>{order.unshift(top);lay();},320);};st.addEventListener("click",next);st.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();next();}});</script>
+</body>
+</html>

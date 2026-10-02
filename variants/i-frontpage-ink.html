@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Front Page · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #f7f6f2; --fg: #111; --soft: #444; --accent: #c8102e; --rule: #111; }
+  img { display: block; max-width: 100%; }
+
+  .paper { max-width: 1240px; margin: 0 auto; padding: 20px clamp(16px, 3vw, 40px) 40px; }
+  .flag { display: flex; justify-content: space-between; border-bottom: 1px solid var(--rule); padding-bottom: 8px; }
+  .mast { text-align: center; padding: 18px 0 12px; border-bottom: 4px double var(--rule); }
+  .mast h1 { font-family: "League Gothic"; font-weight: 400; text-transform: uppercase; font-size: clamp(4rem, 11vw, 9rem); line-height: 0.9; letter-spacing: 0.02em; }
+  .mast nav { display: flex; justify-content: center; gap: 28px; margin-top: 10px; } nav a[aria-current] { color: var(--accent); }
+  .cols { display: grid; grid-template-columns: 1.1fr 1fr 0.9fr; gap: 0 28px; padding-top: 22px; }
+  .cols > * { padding-right: 28px; border-right: 1px solid #bbb; } .cols > *:last-child { border: 0; padding: 0; }
+  .head { font-family: "League Gothic"; text-transform: uppercase; font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 0.95; margin: 10px 0 12px; }
+  .kick { color: var(--accent); }
+  figure { margin: 0; } figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(.15) contrast(1.05); }
+  figcaption { font-size: .85rem; color: var(--soft); margin-top: 6px; font-style: italic; }
+  .body { color: var(--soft); columns: 1; }
+  .links { display: grid; } .links a { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ccc; font-weight: 600; } .links a:hover { color: var(--accent); }
+  @media (max-width: 860px) { .cols { grid-template-columns: 1fr; } .cols > * { border: 0; padding: 0 0 20px; } }
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="flag label rise"><span>New Braunfels, Texas</span><span>Edition: Class of December 2026</span></div>
+  <div class="mast rise d1"><h1>The Steven Kertes</h1><nav class="label"><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></div>
+  <div class="cols">
+    <article class="rise d2"><p class="label kick">Engineering · Startups</p><h2 class="head">Local founder builds clinical platform for nurse anesthesia programs</h2><p class="body">Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering. His startup, Inductiv, is in beta with two programs in Texas.</p></article>
+    <figure class="rise d3"><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career" width="1000" height="1250"><figcaption>Kertes at Texas State, holding the Herald-Zeitung story on his esports career.</figcaption></figure>
+    <aside class="rise d4"><p class="label kick">Reach him</p><div class="links" style="margin-top:8px"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><p class="label" style="margin-top:20px;color:var(--soft)">Texas State University · B.S. Computer Science, Minor in Mathematics</p><p class="label" style="margin-top:8px;color:var(--soft)">New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p></aside>
+  </div>
+</div>
+</body>
+</html>

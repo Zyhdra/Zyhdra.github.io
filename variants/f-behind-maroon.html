@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Name Behind · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #f4f1ef; --fg: #1b2540; --soft: #545b70; --accent: #7a1f2b; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 0 clamp(16px, 4vw, 64px); overflow: hidden; }
+  header { display: flex; justify-content: space-between; padding: 24px 0; } header nav { display: flex; gap: 26px; } nav a[aria-current] { color: var(--accent); }
+  .stage { position: relative; display: grid; place-items: center; }
+  .stage h1 { position: absolute; top: 4%; left: 50%; translate: -50% 0; white-space: nowrap; font-family: "League Gothic"; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(8rem, 23vw, 24rem); line-height: 0.8; color: var(--accent); letter-spacing: 0.01em; }
+  .stage figure { position: relative; margin: 0; width: min(340px, 64vw); aspect-ratio: 4/5; margin-top: 6vw; box-shadow: 0 40px 60px -30px rgb(0 0 0 / .45); }
+  .stage figure img { width: 100%; height: 100%; object-fit: cover; }
+  .bottom { display: grid; grid-template-columns: 1fr auto; gap: 24px 48px; align-items: end; padding: 32px 0 36px; }
+  .bottom p { max-width: 44ch; color: var(--soft); } .bottom .label { color: var(--accent); margin-top: 12px; }
+  .links { display: flex; gap: 22px; flex-wrap: wrap; } .links a { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; }
+  @media (max-width: 760px) { .bottom { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="rise"><strong>Steven Kertes</strong><nav class="label"><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+  <div class="stage"><h1 class="rise">Kertes</h1><figure class="rise d2"><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career" width="1000" height="1250"></figure></div>
+  <div class="bottom rise d3"><div><p>Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p><p class="label">New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p></div><div class="links"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Cutout · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #f1efe9; --fg: #161616; --soft: #5b5850; --accent: #7a1f2b; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 0 clamp(16px, 4vw, 64px); }
+  header { display: flex; justify-content: space-between; padding: 24px 0; } header nav { display: flex; gap: 26px; } nav a[aria-current] { color: var(--accent); }
+  h1 { align-self: center; font-family: "League Gothic"; font-weight: 400; text-transform: uppercase; font-size: clamp(7rem, 24vw, 26rem); line-height: 0.82; letter-spacing: 0.005em;
+    background: url(../assets/img/me/grad-full.jpg) 40% 38% / 120% auto; -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-position 1.6s cubic-bezier(.16,1,.3,1); }
+  h1:hover { background-position: 55% 30%; }
+  .bottom { display: grid; grid-template-columns: 1.2fr 1fr auto; gap: 20px 48px; padding: 26px 0 34px; border-top: 1px solid #d7d2c6; }
+  .bottom p { color: var(--soft); max-width: 44ch; } .bottom .label { color: var(--accent); }
+  .links { display: flex; gap: 20px; flex-wrap: wrap; } .links a { display: inline-flex; gap: 6px; font-weight: 600; }
+  @media (max-width: 860px) { .bottom { grid-template-columns: 1fr; } h1 { font-size: 34vw; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="label rise"><strong>Steven Kertes</strong><nav><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+  <h1 class="rise d1">Steven<br>Kertes</h1>
+  <div class="bottom rise d2"><p>Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p><p class="label">Texas State University · B.S. Computer Science, Minor in Mathematics<br>New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p><div class="links"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+</div>
+
+</body>
+</html>

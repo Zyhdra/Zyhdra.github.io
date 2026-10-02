@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stone &amp; Cobalt · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #e7e2da; --fg: #2b1d14; --soft: #5e4a3c; --accent: #2546a8; --rule: #cbc2b5; }
+  .wrap { min-height: 100svh; display: grid; grid-template-rows: auto 1fr; padding: 0 clamp(16px, 5vw, 80px); }
+  header { display: flex; justify-content: center; padding: 28px 0; }
+  nav { display: flex; gap: 6px; padding: 6px; border-radius: 999px; background: rgb(255 255 255 / 0.45); box-shadow: inset 0 0 0 1px var(--rule); }
+  nav a { padding: 8px 16px; border-radius: 999px; color: var(--soft); transition: background .3s, color .3s; }
+  nav a:hover { color: var(--fg); }
+  nav a[aria-current] { background: var(--fg); color: var(--bg); }
+  @media (max-width: 480px) { nav a { padding: 8px 10px; } nav { gap: 2px; } }
+  main { display: grid; place-items: center; text-align: center; padding: 4vh 0 10vh; }
+  .inner { max-width: 54rem; display: grid; justify-items: center; }
+  .avatar { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; object-position: 50% 45%; margin-bottom: 28px; box-shadow: 0 0 0 5px var(--bg), 0 0 0 6.5px var(--accent); }
+  h1 { font-weight: 700; font-stretch: 100%; font-size: clamp(3rem, 7.5vw, 6.25rem); line-height: 0.95; letter-spacing: -0.035em; }
+  .lede { margin-top: 26px; font-size: clamp(1.125rem, 1.6vw, 1.3rem); color: var(--soft); max-width: 44ch; line-height: 1.5; }
+  .meta { margin-top: 22px; color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 36px; }
+  .links a { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font-weight: 600; box-shadow: inset 0 0 0 1.5px var(--fg); transition: background .3s, color .3s; }
+  .links a:hover { background: var(--fg); color: var(--bg); }
+  .links a.primary { background: var(--accent); color: #fff; box-shadow: none; }
+  .links a.primary:hover { background: #1b3787; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="rise"><nav class="label"><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+  <main>
+    <div class="inner">
+      <img class="avatar rise d1" src="../assets/img/me/face.jpg" alt="Steven Kertes" width="480" height="480">
+      <h1 class="rise d1">Steven Kertes</h1>
+      <p class="lede rise d2">Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app. Graduating from Texas State in December 2026 and looking for full-time roles in software, AI, solutions, and product engineering.</p>
+      <p class="meta label rise d3">New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p>
+      <div class="links rise d4">
+        <a class="primary" href="#">Email me</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

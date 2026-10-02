@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bento Sage · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #e8ede8; --fg: #1d2722; --soft: #4d5c53; --accent: #557a5c; --tile: #f6f8f6; --rule: #cfd8d0; }
+  img { display: block; max-width: 100%; }
+
+  .grid { min-height: 100svh; padding: clamp(12px, 2vw, 24px); display: grid; gap: clamp(10px, 1.2vw, 16px);
+    grid-template-columns: 1.2fr 1fr 1fr; grid-template-rows: auto 1fr 1fr; }
+  .tile { background: var(--tile); border-radius: 18px; padding: clamp(20px, 2.4vw, 32px); }
+  .top { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; }
+  .top nav { display: flex; gap: 24px; } .top nav a { color: var(--soft); } .top nav a[aria-current] { color: var(--accent); }
+  .name { grid-row: 2 / 4; display: flex; flex-direction: column; justify-content: space-between; }
+  .name h1 { font-weight: 750; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; letter-spacing: -0.035em; }
+  .name p { color: var(--soft); max-width: 34ch; font-size: 1.15rem; }
+  .photo { grid-row: 2 / 4; padding: 0; overflow: hidden; } .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .meta { background: var(--accent); color: #f1f5f1; display: grid; align-content: end; gap: 6px; }
+  .links { display: grid; align-content: end; } .links a { display: flex; justify-content: space-between; padding: 12px 0; border-top: 1px solid var(--rule); font-weight: 600; }
+  .links a:hover { color: var(--accent); }
+  @media (max-width: 860px) { .top { flex-wrap: wrap; gap: 10px; } .top nav { gap: 14px; flex-wrap: wrap; } .grid { grid-template-columns: 1fr; grid-template-rows: auto; } .name, .photo { grid-row: auto; } .photo { aspect-ratio: 4/5; } }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="tile top rise"><strong>Steven Kertes</strong><nav class="label"><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></div>
+  <div class="tile name rise d1"><h1>Steven<br>Kertes</h1><p>Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p></div>
+  <div class="tile photo rise d2"><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career" width="1000" height="1250"></div>
+  <div class="tile meta label rise d3"><span>Class of Dec 2026</span><span>Texas State University · B.S. Computer Science, Minor in Mathematics</span><span>New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</span></div>
+  <div class="tile links rise d4"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+</div>
+</body>
+</html>

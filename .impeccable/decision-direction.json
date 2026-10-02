@@ -1,0 +1,229 @@
+{
+  "title": "Choose the visual world for your site",
+  "question": "Here's the direction I'd build, plus a few alternates. Keep it, pick another, or re-roll for a fresh hand.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Diploma Folder",
+      "kicker": "THE ROLL",
+      "lineage": "Commencement diploma covers, moiré linings, and engraved security-paper certificates",
+      "thesis": "Your site opens like the diploma you're about to earn, with you inside it instead of a certificate.",
+      "palette": [
+        "#4a2f1d",
+        "#7a5134",
+        "#1f3f73",
+        "#3d6bb3",
+        "#e6edf6"
+      ],
+      "materials": [
+        "grained brown leather cover",
+        "blue moiré silk lining",
+        "pale-blue guilloché security paper",
+        "blind-embossed lettering"
+      ],
+      "viewport": "A brown leather folder fills the screen with your name embossed; it swings open on load to reveal your big portrait on blue lining, with your one-line intro and links on the facing page.",
+      "risk": "If the type is set like a real diploma it turns stiff and formal, so the lettering stays warm and modern and the folder is only the frame.",
+      "raised": [
+        {
+          "from": "OSPAAAL silkscreen",
+          "raise": "Brown and blue own whole regions as flat, confident fields, never timid accents on a white page."
+        },
+        {
+          "from": "Cracktro scroller",
+          "raise": "No card boxes or divider clutter: hierarchy comes from scale and weight alone."
+        },
+        {
+          "from": "Particle event display",
+          "raise": "Hover a job or project and the rest gently dim, so one thing is in focus at a time."
+        },
+        {
+          "from": "Generative identity",
+          "raise": "One state drives everything: the graduation tassel moves as you change tabs, and the page's accent follows it."
+        },
+        {
+          "from": "Daylight section",
+          "raise": "Every role and milestone carries a precise date set in tabular figures, like a commencement program."
+        }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "The Record Sleeve",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "1950s–60s jazz LP covers: duotone photos and huge type",
+      "thesis": "You are the album: a duotone portrait and your name set huge, with each tab a track on the back cover.",
+      "palette": [
+        "#1d4e9e",
+        "#6b4226",
+        "#c9a27a",
+        "#0f1b2e",
+        "#f4f6f8"
+      ],
+      "materials": [
+        "blue/brown duotone photography",
+        "heavy condensed sans",
+        "off-grid type blocks",
+        "vinyl sleeve back-cover track list"
+      ],
+      "viewport": "A square-feeling cover: your photo in blue-and-brown duotone with your name cropped massive across it; nav reads as Side A / Side B.",
+      "risk": "This is where most bold portfolio runs land, so it's effective and confident but familiar."
+    },
+    {
+      "id": "challenger-quilt",
+      "label": "The Memory Quilt",
+      "verdict": "competitive",
+      "lineage": "Hand-pieced quilts where each block carries a date and a story",
+      "thesis": "Your life as a quilt of chambray-blue and brown patches, each one a job, project, or memory, seamed together with visible stitching.",
+      "palette": [
+        "#7d97b8",
+        "#3f5f8a",
+        "#5c3b24",
+        "#d9c3a5",
+        "#b8473a"
+      ],
+      "materials": [
+        "faded chambray",
+        "stitched seam rules",
+        "handwritten cloth labels",
+        "unequal patch grid"
+      ],
+      "viewport": "A grid of fabric-like blocks: your portrait is the center patch, and experience, projects, and grad photos are pieced around it.",
+      "case": "Strong on personality and fits your palette naturally; loses on clarity because recruiters must hunt for the resume.",
+      "risk": "Can tip into 'too busy' or crafty unless held to very few patches."
+    },
+    {
+      "id": "challenger-ospaaal",
+      "label": "Solidarity Silkscreen",
+      "verdict": "declined",
+      "lineage": "1960s–80s Havana silkscreen posters",
+      "thesis": "One emblematic figure in flat fearless color fields with a repeating type border.",
+      "palette": [
+        "#d9342b",
+        "#f2c230",
+        "#1a1a1a",
+        "#efe6d2"
+      ],
+      "materials": [
+        "flat silkscreen ink",
+        "repeating type border"
+      ],
+      "viewport": "Your portrait as a flat-color emblem, center sheet.",
+      "risk": "Political-poster tone and a red/yellow palette both fight your brief.",
+      "case": "Recruiters don't identify with protest posters, and it overrides your brown/blue.",
+      "kept": "Total commitment to flat color fields."
+    },
+    {
+      "id": "challenger-generative",
+      "label": "Generative Identity",
+      "verdict": "declined",
+      "lineage": "Parametric brand systems",
+      "thesis": "A logo that reseeds itself and recolors the site around it.",
+      "palette": [
+        "#3d6bb3",
+        "#7a5134",
+        "#e6edf6"
+      ],
+      "materials": [
+        "parametric SVG mark",
+        "seed-derived tokens"
+      ],
+      "viewport": "Animated mark with a reseed control.",
+      "risk": "Feels like a tech demo, not a person.",
+      "case": "Puts a gimmick in front of you, and you asked for person-first.",
+      "kept": "One state driving the whole page (now the tassel)."
+    },
+    {
+      "id": "challenger-cracktro",
+      "label": "Cracktro Scroller",
+      "verdict": "declined",
+      "lineage": "Demo-scene title screens",
+      "thesis": "Bitmap text on a black void with drifting star fields.",
+      "palette": [
+        "#000000",
+        "#e8e2d0",
+        "#f0a020"
+      ],
+      "materials": [
+        "bitmap type",
+        "parallax dust"
+      ],
+      "viewport": "One line of text over a black void.",
+      "risk": "Dark and techy, which you ruled out.",
+      "case": "Violates your 'not dark/techy' rule outright.",
+      "kept": "No boxes: rank by scale alone."
+    },
+    {
+      "id": "challenger-detector",
+      "label": "Event Display",
+      "verdict": "declined",
+      "lineage": "Particle-collider event visualizations",
+      "thesis": "Your career as tracks curving out of one collision.",
+      "palette": [
+        "#0a0d12",
+        "#5b7fa6",
+        "#f2d43a",
+        "#d23c3c"
+      ],
+      "materials": [
+        "WebGL tracks",
+        "concentric rings"
+      ],
+      "viewport": "A 3D detector cross-section.",
+      "risk": "Dark, techy, and over-clever.",
+      "case": "Off-brief on mood and buries the essentials.",
+      "kept": "Focus one item, dim the rest."
+    },
+    {
+      "id": "challenger-daylight",
+      "label": "Daylight Section",
+      "verdict": "declined",
+      "lineage": "Architectural sun-path sections",
+      "thesis": "Rooms lit by a moving sunbeam through the day.",
+      "palette": [
+        "#f1efe9",
+        "#2b2b2b",
+        "#e6b84a",
+        "#6e86a6"
+      ],
+      "materials": [
+        "limewash",
+        "section poché"
+      ],
+      "viewport": "A building section with a traveling beam.",
+      "risk": "Beautiful but has nothing to do with you.",
+      "case": "No recruiter connection, and the metaphor needs explaining.",
+      "kept": "Precise timestamps on everything."
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "buildPath": {
+    "value": "code"
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A clean modern personal site, executed impeccably in brown and blue.",
+    "palette": [
+      "#ffffff",
+      "#1c2a3f",
+      "#2f5fa7",
+      "#7a5134"
+    ],
+    "materials": [
+      "clean grid",
+      "headshot",
+      "tabbed sections"
+    ],
+    "viewport": "Name and headshot hero, top nav tabs, and resume and contact buttons up front.",
+    "risk": "Polished but looks like many other grads' sites by design."
+  },
+  "steer": true,
+  "seedKey": "e27af21a",
+  "seedMode": "persuade",
+  "chosen": "model-pick"
+}

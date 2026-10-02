@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Card · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #e9e8f5; --fg: #1c1a33; --soft: #59567a; --accent: #5a4fcf; --card: #fff; --shadow: 28 26 51; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 0 clamp(16px, 4vw, 64px); }
+  header { display: flex; justify-content: center; padding: 26px 0; } header nav { display: flex; gap: 28px; } nav a[aria-current] { color: var(--accent); }
+  .stage { display: grid; place-items: center; perspective: 1600px; padding: 24px 0; }
+  .card { width: min(640px, 92vw); aspect-ratio: 1.75; position: relative; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.16,1,.3,1); cursor: pointer; }
+  .card:hover, .card:focus-within { transform: rotateY(180deg); }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 18px; overflow: hidden; background: var(--card); box-shadow: 0 30px 60px -25px rgb(var(--shadow) / .45); display: grid; grid-template-columns: 0.8fr 1fr; }
+  .face img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 25%; }
+  .face .txt { padding: clamp(18px, 3vw, 34px); display: flex; flex-direction: column; justify-content: space-between; }
+  .face h1 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); font-weight: 750; letter-spacing: -0.03em; line-height: 1; } .face .label { color: var(--accent); }
+  .back { transform: rotateY(180deg); background: var(--accent); color: #fff; grid-template-columns: 1fr; padding: clamp(18px, 3vw, 34px); align-content: space-between; }
+  .back .links { display: grid; } .back .links a { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgb(255 255 255 / .3); font-weight: 600; }
+  .hint { text-align: center; color: var(--soft); padding-bottom: 28px; }
+  .about { max-width: 44ch; margin: 0 auto 8px; text-align: center; color: var(--soft); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="rise"><nav class="label"><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header>
+  <div class="stage"><div class="card rise d1" tabindex="0">
+    <div class="face"><img src="../assets/img/me/portrait.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career" width="1000" height="1250"><div class="txt"><div><h1>Steven Kertes</h1><p class="label" style="margin-top:10px">Engineer · Founder of Inductiv</p></div><p style="color:var(--soft);font-size:.95rem">Texas State University · B.S. Computer Science, Minor in Mathematics<br>New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p></div></div>
+    <div class="face back"><p class="label">Get in touch</p><div class="links"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+  </div></div>
+  <div><p class="about rise d2">Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p><p class="hint label rise d3">Hover the card to flip it</p></div>
+</div>
+</body>
+</html>

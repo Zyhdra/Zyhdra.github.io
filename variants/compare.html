@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare home page options</title>
+<style>
+  :root { --bg: #f4f5f7; --fg: #111827; --soft: #5b6475; --line: #dfe3ea; --on: #111827; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--fg); height: 100vh; display: grid; grid-template-rows: auto 1fr; }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: #fff; }
+  .bar h1 { font-size: 15px; margin: 0 8px 0 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tabs button { font: inherit; font-size: 14px; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 12px 7px 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+  .tabs button[aria-pressed="true"] { background: var(--on); color: #fff; border-color: var(--on); }
+  .sw { display: inline-flex; border-radius: 999px; overflow: hidden; box-shadow: 0 0 0 1px rgb(0 0 0 / .12); }
+  .sw i { width: 12px; height: 18px; display: block; }
+  .tools { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+  .tools button, .tools a { font: inherit; font-size: 13px; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 6px 10px; cursor: pointer; color: inherit; text-decoration: none; }
+  .tools button[aria-pressed="true"] { background: var(--on); color: #fff; }
+  .desc { width: 100%; font-size: 14px; color: var(--soft); margin: 0; }
+  .stage { display: grid; place-items: center; overflow: auto; padding: 16px; }
+  iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; background: #fff; box-shadow: 0 10px 30px -12px rgb(0 0 0 / .25); transition: width .4s; }
+  .phone iframe { width: 390px; height: 844px; max-height: 100%; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>Pick a home page</h1>
+  <div class="tabs" id="tabs"></div>
+  <div class="tools">
+    <button id="mobile" aria-pressed="false">Phone size</button>
+    <a id="full" href="#" target="_blank">Open full ↗</a>
+  </div>
+  <p class="desc" id="desc"></p>
+</div>
+<div class="stage" id="stage"><iframe id="frame" title="Home page option"></iframe></div>
+<script>
+const options = [
+ {
+  "name": "F · Name Behind",
+  "file": "f-behind-maroon.html",
+  "colors": [
+   "#f4f1ef",
+   "#1b2540",
+   "#7a1f2b"
+  ],
+  "desc": "Your last name in giant maroon letters with the photo standing in front of it. Maroon and navy match Texas State and your suit."
+ },
+ {
+  "name": "F2 · Name Behind, Ink & Saffron",
+  "file": "f2-behind-saffron.html",
+  "colors": [
+   "#eef0f3",
+   "#111827",
+   "#e0a100"
+  ],
+  "desc": "Your favorite Name Behind layout in cool white, near-black, and a bold saffron yellow."
+ },
+ {
+  "name": "F3 · Name Behind, Night Teal",
+  "file": "f3-behind-nightteal.html",
+  "colors": [
+   "#0e2a2f",
+   "#eaf4f2",
+   "#ff8a65"
+  ],
+  "desc": "Name Behind on deep teal with a warm coral name. Darker and moodier, but still soft."
+ },
+ {
+  "name": "L · Big Index",
+  "file": "l-index-orange.html",
+  "colors": [
+   "#eef1f6",
+   "#172036",
+   "#ff6a2b"
+  ],
+  "desc": "The four pages are the home page: huge, hoverable rows. Hover 'About' and your photo pops in. Navy, blue, and orange, like your Vipers jersey."
+ },
+ {
+  "name": "L2 · Big Index, Mono & Cobalt",
+  "file": "l2-index-cobalt.html",
+  "colors": [
+   "#fafafa",
+   "#0b0b0b",
+   "#2541ff"
+  ],
+  "desc": "Big Index in crisp black and white, with an electric cobalt blue on hover. The sleekest version."
+ },
+ {
+  "name": "L3 · Big Index, Burgundy & Blush",
+  "file": "l3-index-burgundy.html",
+  "colors": [
+   "#f7ecec",
+   "#3a0e18",
+   "#b3123a"
+  ],
+  "desc": "Big Index in soft blush pink with deep burgundy type. Warm and confident."
+ },
+ {
+  "name": "M · Business Card",
+  "file": "m-card-lavender.html",
+  "colors": [
+   "#e9e8f5",
+   "#1c1a33",
+   "#5a4fcf"
+  ],
+  "desc": "A business card in the middle of the page. Hover it and it flips over to show your contact links. Lavender and violet."
+ },
+ {
+  "name": "M2 · Business Card, Mint & Forest",
+  "file": "m2-card-mint.html",
+  "colors": [
+   "#e3f0e9",
+   "#12352a",
+   "#1f8a5b"
+  ],
+  "desc": "The flipping business card on fresh mint; the back of the card is forest green."
+ },
+ {
+  "name": "M3 · Business Card, Steel & Rust",
+  "file": "m3-card-steel.html",
+  "colors": [
+   "#e3e7ee",
+   "#14233f",
+   "#c4572a"
+  ],
+  "desc": "The flipping business card on cool steel gray; the back of the card is burnt orange."
+ },
+ {
+  "name": "O · Marquee",
+  "file": "o-marquee-navy.html",
+  "colors": [
+   "#e9edf4",
+   "#13213d",
+   "#2b59c3"
+  ],
+  "desc": "Like Name Behind, but your name scrolls slowly behind the photo in solid and outlined letters. Hover to pause it."
+ },
+ {
+  "name": "P · Index + Preview",
+  "file": "p-index-preview.html",
+  "colors": [
+   "#f2f0ec",
+   "#1a1a1a",
+   "#3355ff"
+  ],
+  "desc": "Like Big Index, with a picture on the right that changes as you hover each row (you, the Inductiv app, your Rocket League card)."
+ },
+ {
+  "name": "Q · Card Deck",
+  "file": "q-deck-sky.html",
+  "colors": [
+   "#e6eef7",
+   "#102542",
+   "#f0b429"
+  ],
+  "desc": "Like Business Card: three stacked cards (you, Inductiv, Rocket League) that fan out when you hover."
+ },
+ {
+  "name": "R · Photo Cutout",
+  "file": "r-cutout-ink.html",
+  "colors": [
+   "#f1efe9",
+   "#161616",
+   "#7a1f2b"
+  ],
+  "desc": "Your name in giant letters, filled with your photo. Hover and the photo inside shifts. Bold but very clean."
+ },
+ {
+  "name": "S · Lanyard Badge",
+  "file": "s-badge-forest.html",
+  "colors": [
+   "#e7ece6",
+   "#17261d",
+   "#2f6b45"
+  ],
+  "desc": "A conference badge with your photo, gently swinging on a lanyard (faster on hover). Forest green."
+ },
+ {
+  "name": "T · Photo Stack",
+  "file": "t-prints-rust.html",
+  "colors": [
+   "#efe9e4",
+   "#1e3358",
+   "#b4532a"
+  ],
+  "desc": "A stack of printed photos (grad photo, player card, award). Click to shuffle through them. Navy and rust."
+ },
+ {
+  "name": "Current: Record Sleeve",
+  "file": "../index.html",
+  "colors": [
+   "#1d4e9e",
+   "#6b4226",
+   "#ead6bd"
+  ],
+  "desc": "What you have now: an album cover in blue and brown, with a huge name and a spinning record."
+ },
+ {
+  "name": "A · Quiet Navy",
+  "file": "a-quiet-navy.html",
+  "colors": [
+   "#f6f7f9",
+   "#14284b",
+   "#8a5a3b"
+  ],
+  "desc": "Light and clean. Navy type on soft white, brown only as a small accent. Name and intro on the left, links on the right. The most professional and calm."
+ },
+ {
+  "name": "B · Split Sleeve",
+  "file": "b-split-sleeve.html",
+  "colors": [
+   "#1f4f9c",
+   "#f3f5f8",
+   "#6b4226"
+  ],
+  "desc": "A tamer Record Sleeve: half the screen is a blue panel with your name, the other half is light with your intro and links. Keeps the brown and blue, but sleeker."
+ },
+ {
+  "name": "C · Stone & Cobalt",
+  "file": "c-stone-cobalt.html",
+  "colors": [
+   "#e7e2da",
+   "#2b1d14",
+   "#2546a8"
+  ],
+  "desc": "Warm stone background, espresso-brown text, cobalt blue accents. Everything centered, with pill-shaped buttons. Friendly and simple."
+ },
+ {
+  "name": "D · Deep Harbor",
+  "file": "d-deep-harbor.html",
+  "colors": [
+   "#16305c",
+   "#f1f4f9",
+   "#d4a77c"
+  ],
+  "desc": "Deep navy all over with warm sand accents. Intro at the top, your name set huge across the bottom. Bold but still clean."
+ },
+ {
+  "name": "E · Bento Sage",
+  "file": "e-bento-sage.html",
+  "colors": [
+   "#e8ede8",
+   "#1d2722",
+   "#557a5c"
+  ],
+  "desc": "Rounded tiles in a grid (name, photo, details, links), like an app dashboard. Soft sage green and charcoal. Modern and tidy."
+ },
+ {
+  "name": "G · Sidebar Teal",
+  "file": "g-sidebar-teal.html",
+  "colors": [
+   "#0f2e36",
+   "#eef5f5",
+   "#12808d"
+  ],
+  "desc": "A dark teal sidebar with your face, nav, and links, and a big clean statement on the right. Feels like a polished app."
+ },
+ {
+  "name": "H · Magazine Cover",
+  "file": "h-magazine-gold.html",
+  "colors": [
+   "#0f2342",
+   "#f4f1ea",
+   "#e3b65b"
+  ],
+  "desc": "Your photo fills the whole screen like a magazine cover, with your name in big navy and gold type over it. The most dramatic."
+ },
+ {
+  "name": "I · Front Page",
+  "file": "i-frontpage-ink.html",
+  "colors": [
+   "#f7f6f2",
+   "#111111",
+   "#c8102e"
+  ],
+  "desc": "A newspaper front page, a nod to the Herald-Zeitung in your photo. Black and white with a red accent. Playful but sharp."
+ },
+ {
+  "name": "J · Inline Photo",
+  "file": "j-inline-coral.html",
+  "colors": [
+   "#f4f4f2",
+   "#1f1f1f",
+   "#e2583e"
+  ],
+  "desc": "One big friendly sentence with a small pill of your photo tucked right into it (hover it). Light gray with a coral accent. Very sleek."
+ },
+ {
+  "name": "K · Photo Band",
+  "file": "k-band-plum.html",
+  "colors": [
+   "#f6f2f6",
+   "#2a1630",
+   "#b8862b"
+  ],
+  "desc": "Your photo as a wide banner across the top, with your name, intro, and links in three columns below. Plum and gold."
+ },
+ {
+  "name": "N · Sticky Photo",
+  "file": "n-sticky-rose.html",
+  "colors": [
+   "#f5eeec",
+   "#2c2a22",
+   "#a65a4a"
+  ],
+  "desc": "Half the screen is your photo, half is a warm intro with quick facts and colored buttons. Dusty rose, terracotta, and olive."
+ }
+];
+const tabs = document.getElementById("tabs"), frame = document.getElementById("frame"), desc = document.getElementById("desc"), full = document.getElementById("full");
+function show(i) {
+  frame.src = options[i].file; desc.textContent = options[i].desc; full.href = options[i].file;
+  [...tabs.children].forEach((b, j) => b.setAttribute("aria-pressed", String(i === j)));
+}
+options.forEach((o, i) => {
+  const b = document.createElement("button");
+  b.innerHTML = `<span class="sw">${o.colors.map(c => `<i style="background:${c}"></i>`).join("")}</span>${o.name}`;
+  b.onclick = () => show(i); tabs.appendChild(b);
+});
+document.getElementById("mobile").onclick = (e) => {
+  const on = e.currentTarget.getAttribute("aria-pressed") !== "true";
+  e.currentTarget.setAttribute("aria-pressed", String(on));
+  document.getElementById("stage").classList.toggle("phone", on);
+};
+show(0);
+</script>
+</body>
+</html>

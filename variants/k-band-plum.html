@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Band · Steven Kertes</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --bg: #f6f2f6; --fg: #2a1630; --soft: #64506a; --accent: #b8862b; }
+  img { display: block; max-width: 100%; }
+
+  .band { position: relative; height: 56svh; min-height: 360px; overflow: hidden; }
+  .band img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 32%; }
+  .band header { position: absolute; inset: 0 0 auto; display: flex; justify-content: space-between; padding: 24px clamp(16px, 5vw, 80px); color: #fff; background: linear-gradient(rgb(0 0 0 / .45), transparent); }
+  .band nav { display: flex; gap: 24px; } .band nav a[aria-current] { color: var(--accent); }
+  .info { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px 56px; padding: 40px clamp(16px, 5vw, 80px) 48px; }
+  h1 { font-weight: 750; font-size: clamp(3rem, 6vw, 5.4rem); line-height: 0.92; letter-spacing: -0.04em; margin-top: -0.95em; background: var(--bg); padding: 14px 20px 0 0; display: inline-block; position: relative; }
+  h1 span { color: var(--accent); }
+  .col p { color: var(--soft); } .col .label { color: var(--accent); margin-bottom: 10px; }
+  .links { display: grid; } .links a { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #e2d6e3; font-weight: 600; }
+  @media (max-width: 860px) { .info { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="band"><img src="../assets/img/me/grad-full.jpg" alt="Steven at Texas State in his graduation stole, holding a Herald-Zeitung front page about his esports career" width="2400" height="1600"><header class="label rise"><strong>Steven Kertes</strong><nav><a href="#" aria-current="page">About</a><a href="#">Experience</a><a href="#">Projects</a><a href="#">Personal</a></nav></header></div>
+<div class="info">
+  <div class="rise d1"><h1>Steven<br>Kertes<span>.</span></h1></div>
+  <div class="col rise d2"><p class="label">About</p><p>Engineer and founder. I build software end to end, from the first conversation with a user to the shipped app, and I'm looking for full-time roles in software, AI, solutions, and product engineering.</p></div>
+  <div class="col rise d3"><p class="label">New Braunfels, TX · Austin &amp; San Antonio · Open to relocation &amp; remote</p><div class="links"><a href="#">Email me <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">LinkedIn <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">GitHub <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="#">Inductiv <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+</div>
+</body>
+</html>

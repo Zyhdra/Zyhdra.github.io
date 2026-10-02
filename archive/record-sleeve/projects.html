@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · Steven Kertes</title>
+  <meta name="description" content="Inductiv, a clinical tracking platform for nurse anesthesia programs that Steven Kertes founded and built, plus Meownvelope, a Flutter budgeting app.">
+  <meta name="theme-color" content="#1d4e9e">
+  <link rel="preload" href="assets/fonts/league-gothic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="back">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <a class="masthead__name" href="index.html">Steven Kertes</a>
+    <nav class="tracks label" aria-label="Main">
+      <div class="tracks__side">
+        <span class="tracks__side-name" aria-hidden="true">Side A</span>
+        <a href="index.html">About</a>
+        <a href="experience.html">Experience</a>
+      </div>
+      <div class="tracks__side">
+        <span class="tracks__side-name" aria-hidden="true">Side B</span>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="personal.html">Personal</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page" id="main">
+    <div class="page__head">
+      <h1 class="page__title">Projects</h1>
+      <p class="page__sub">A startup I founded and run, and the team app that got me hooked on shipping.</p>
+    </div>
+
+    <div class="page__body">
+      <article class="feature" aria-labelledby="inductiv">
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone__device" role="group" aria-label="Inductiv iOS app screens, with sample data">
+              <span class="phone__btn" style="left:-3.5px;top:176px;height:34px"></span>
+              <span class="phone__btn" style="left:-3.5px;top:246px;height:64px"></span>
+              <span class="phone__btn" style="left:-3.5px;top:326px;height:64px"></span>
+              <span class="phone__btn" style="right:-3.5px;top:262px;height:100px"></span>
+              <div class="phone__glass">
+                <div class="phone__screen" id="phone-screen">
+                  <img src="assets/img/inductiv/inductiv-schedule.png" alt="Schedule screen: upcoming clinical shifts with site, preceptor, clock-in, and case logging" data-screen="schedule" class="is-on" width="804" height="1748">
+                  <img src="assets/img/inductiv/inductiv-today.png" alt="Today screen: the student's day at a glance" data-screen="today" width="804" height="1748" loading="lazy">
+                  <img src="assets/img/inductiv/inductiv-progress.png" alt="Progress screen: requirements met, clinical hours, and case counts against program targets" data-screen="progress" width="804" height="1748" loading="lazy">
+                  <img src="assets/img/inductiv/inductiv-evals.png" alt="Evals screen: preceptor evaluations by status" data-screen="evals" width="804" height="1748" loading="lazy">
+                  <div class="phone__tabs">
+                    <button type="button" data-go="today" tabindex="-1" aria-hidden="true"></button>
+                    <button type="button" data-go="schedule" tabindex="-1" aria-hidden="true"></button>
+                    <button type="button" data-go="progress" tabindex="-1" aria-hidden="true"></button>
+                    <button type="button" data-go="evals" tabindex="-1" aria-hidden="true"></button>
+                    <button type="button" disabled tabindex="-1" aria-hidden="true"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-picker label" role="group" aria-label="Show app screen">
+            <button type="button" data-go="today" aria-pressed="false">Today</button>
+            <button type="button" data-go="schedule" aria-pressed="true">Schedule</button>
+            <button type="button" data-go="progress" aria-pressed="false">Progress</button>
+            <button type="button" data-go="evals" aria-pressed="false">Evals</button>
+          </div>
+          <p class="phone-caption label">Tap the tab bar · Sample data</p>
+        </div>
+
+        <div>
+          <h2 class="feature__name" id="inductiv">Inductiv</h2>
+          <p class="feature__tag">Clinical tracking built for nurse anesthesia programs.</p>
+
+          <div class="feature__copy">
+            <p>Nurse anesthesia students juggle clinical shifts, case logs, preceptor evaluations, and degree requirements, usually in generic tools that weren't built for them and that they can't use quickly between cases. Program directors told me they were paying a lot for that.</p>
+            <p>So I built Inductiv: one clinical record, from a student's first case to the degree audit. I started with scheduling because students check it every day, then built case logging, evaluations, and degree audits on top of it. Two of the two programs I demoed it to committed to beta testing.</p>
+          </div>
+
+          <dl class="facts">
+            <dt class="label">My role</dt>
+            <dd>Founder. Product, engineering, and sales, solo</dd>
+            <dt class="label">Platforms</dt>
+            <dd>Web app and a native iOS &amp; Android app</dd>
+            <dt class="label">Stack</dt>
+            <dd>TypeScript, Next.js, Hono API, Expo (React Native), Supabase, Railway, Cloudflare</dd>
+            <dt class="label">Status</dt>
+            <dd>In beta with 2 nurse anesthesia programs in Texas, about 40 students a year</dd>
+          </dl>
+
+          <h3 class="block__title" style="font-size: 2.25rem; margin-bottom: 18px">Under the hood</h3>
+          <ul class="how">
+            <li><strong>API-first monorepo.</strong> One backend serves the web and mobile clients, and shared TypeScript types define the data model once for all three.</li>
+            <li><strong>One authorization policy.</strong> Every endpoint routes through a single tested permissions function, with no ad-hoc role checks scattered through the code.</li>
+            <li><strong>Program-scoped by design.</strong> Each nursing program is its own tenant, and no query returns another program's data.</li>
+            <li><strong>Evaluations as a state machine.</strong> Draft → preceptor submitted → admin reviewed → director signed. Signed records are immutable; corrections become addenda.</li>
+            <li><strong>Health data handled carefully.</strong> 2FA, encrypted storage, and PHI filtering that checks notes for patient details before they're saved.</li>
+          </ul>
+
+          <div class="cta-line">
+            <a class="btn" href="https://inductiv.info" target="_blank" rel="noopener">
+              Visit inductiv.info
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="https://inductiv.info/#on-shift" target="_blank" rel="noopener">
+              Try the live demo
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="side-project" aria-labelledby="meow">
+        <div>
+          <h2 class="feature__name" id="meow" style="font-size: clamp(3.25rem, 5.5vw, 5rem)">Meownvelope</h2>
+          <p class="feature__tag">Envelope budgeting for college students. With cats.</p>
+          <div class="feature__copy">
+            <p>Starting to save can feel daunting when every finance app assumes you already know what you're doing. Meownvelope makes the classic cash-envelope method digital: split your money into categories, fill them up, and keep a streak going, with badges and a cat to cheer you on.</p>
+            <p>We built it as a team of four in Agile/Scrum sprints. I owned page functionality and on-device local storage, wrote unit tests for the storage and gamification subsystems, and demoed features to our faculty advisor each sprint.</p>
+          </div>
+          <dl class="facts" style="margin-bottom: 0">
+            <dt class="label">My role</dt>
+            <dd>Developer: pages, local storage, testing</dd>
+            <dt class="label">Stack</dt>
+            <dd>Flutter, Dart, Hive (on-device storage)</dd>
+            <dt class="label">Team</dt>
+            <dd>4 developers, Agile/Scrum with a faculty advisor</dd>
+          </dl>
+        </div>
+        <div>
+          <div class="side-project__art">
+            <img src="assets/img/meownvelope/logo.png" alt="Meownvelope logo: a cat holding cash" loading="lazy">
+          </div>
+          <p class="credit">Logo by teammate Nico San Esteban</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <p class="foot__big"><a href="mailto:stevenkertes13@gmail.com">Let's talk</a></p>
+    <nav class="foot__links label" aria-label="Elsewhere">
+      <a href="mailto:stevenkertes13@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/steven-kertes-9473b8272" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Zyhdra" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://inductiv.info" target="_blank" rel="noopener">Inductiv</a>
+    </nav>
+  </footer>
+
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>
