@@ -34,6 +34,49 @@ if (screen) {
   document.querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => show(b.dataset.go)));
 }
 
+// Personal: only one piano clip plays at a time.
+const clips = document.querySelectorAll(".clip video");
+clips.forEach((v) => v.addEventListener("play", () => clips.forEach((o) => o !== v && o.pause())));
+
+// Personal: the dog deck. Tap the top card (or Next) to send it to the back.
+const deck = document.querySelector("[data-deck]");
+if (deck) {
+  const order = [...deck.querySelectorAll(".deck__card")];
+  const count = deck.querySelector("[data-deck-count]");
+  const tilt = [-2.5, 3, -4, 1.5, 4.5, -1, 2.5, -3.5, 0.5];
+  order.forEach((c, i) => c.style.setProperty("--r", `${tilt[i % tilt.length]}deg`));
+  let seen = 1;
+  const layout = () => {
+    order.forEach((c, depth) => {
+      c.style.setProperty("--d", Math.min(depth, 3));
+      c.classList.toggle("is-top", depth === 0);
+      c.classList.toggle("is-hidden", depth > 2);
+      // A card still flying off keeps its place on top until it lands at the back.
+      if (!c.classList.contains("is-flung")) c.style.zIndex = order.length - depth;
+    });
+  };
+  const next = () => {
+    const top = order.shift();
+    order.push(top);
+    seen = (seen % order.length) + 1;
+    count.textContent = seen;
+    if (!reduce) {
+      top.classList.add("is-flung");
+      top.style.zIndex = order.length + 1;
+      setTimeout(() => {
+        top.classList.remove("is-flung");
+        layout();
+      }, 400);
+    }
+    layout();
+  };
+  deck.querySelector("[data-deck-next]").addEventListener("click", next);
+  deck.querySelector(".deck__cards").addEventListener("click", (e) => {
+    if (e.target.closest(".is-top")) next();
+  });
+  layout();
+}
+
 // Temporary color picker, used to choose a palette. Delete once one is picked.
 const THEMES = [
   ["cobalt", "Cobalt", "#f3f1ee", "#2546a8"],
@@ -82,4 +125,4 @@ THEMES.forEach(([id, name, a, b, other]) => {
   (other ? rowOther : rowBlue).appendChild(btn);
 });
 document.body.appendChild(picker);
-setTheme(document.documentElement.dataset.theme || "cobalt");
+setTheme(document.documentElement.dataset.theme || "maroon");

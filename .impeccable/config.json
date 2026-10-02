@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "personal.html"
+        ],
+        "createdAt": "2026-10-02T03:58:24.470Z",
+        "reason": "Claude triage: .photo intentionally clips its cover image with an overlaid figcaption; no tooltips/menus need to escape"
+      }
+    ]
+  }
+}
