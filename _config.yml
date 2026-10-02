@@ -1,0 +1,6 @@
+# GitHub Pages: keep design explorations and notes in the repo but off the live site.
+exclude:
+  - variants/
+  - archive/
+  - PRODUCT.md
+  - README.md
