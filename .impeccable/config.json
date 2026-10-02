@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-10-02T03:58:24.470Z",
         "reason": "Claude triage: .photo intentionally clips its cover image with an overlaid figcaption; no tooltips/menus need to escape"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "personal.html"
+        ],
+        "createdAt": "2026-10-02T04:01:00.540Z",
+        "reason": "Claude triage: hits are the two pre-existing one-line photo captions (41/43 chars) in the site-wide uppercase .label style, not body passages"
       }
     ]
   }
