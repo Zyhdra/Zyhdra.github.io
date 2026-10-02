@@ -977,9 +977,16 @@ a:hover .icon {
   .stage--long {
     --big-size: 17vw;
   }
-  /* On phones the word needs to read, so the subject overlaps less of it */
+  /* On phones the word needs to read, so the subject only grazes its baseline */
   .subject {
-    margin-top: calc(-0.3 * var(--big-size));
+    margin-top: calc(-0.08 * var(--big-size));
+  }
+  /* Thumb-sized tap targets */
+  .top nav a {
+    padding-block: 11px;
+  }
+  .foot__links a {
+    padding-block: 12px;
   }
   .portrait {
     width: 66vw;
