@@ -1058,3 +1058,245 @@ a:hover .icon {
     navigation: none;
   }
 }
+
+/* ── Grad: a one-screen collage that scrolls sideways ────────────────── */
+.collage {
+  --rows: 3;
+  --gap: 8px;
+  display: flex;
+  gap: clamp(16px, 2.5vw, 36px);
+  height: var(--collage-h, calc(100dvh - 120px));
+  min-height: 420px;
+  padding: 0 var(--gutter) 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--big) transparent;
+  animation: rise 1s var(--ease-out) both;
+}
+.collage__intro {
+  flex: none;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+.collage__word {
+  font-family: var(--display);
+  text-transform: uppercase;
+  color: var(--big);
+  font-size: min(26dvh, 11.5rem);
+  line-height: 0.8;
+  letter-spacing: 0.01em;
+}
+.collage__text {
+  display: grid;
+  gap: 18px;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+.collage__hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--soft);
+}
+.collage__rows {
+  flex: none;
+  display: grid;
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  gap: var(--gap);
+  height: 100%;
+}
+.collage__row {
+  display: flex;
+  gap: var(--gap);
+  min-height: 0;
+}
+/* Without the script the photos still sit in a tidy wrapped grid */
+.collage__rows:not(.is-laid) {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  width: 70vw;
+}
+.collage__rows:not(.is-laid) .shot {
+  height: 30%;
+}
+.shot {
+  flex: none;
+  height: 100%;
+  aspect-ratio: var(--ar);
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--rule);
+  cursor: zoom-in;
+}
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out), filter 0.4s var(--ease-out);
+}
+.shot:hover img {
+  transform: scale(1.04);
+}
+.grad + .foot {
+  margin-top: 0;
+}
+@media (max-width: 640px) {
+  .collage {
+    --rows: 2;
+    --gap: 6px;
+    flex-direction: column;
+    gap: 16px;
+    overflow: visible;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+  .collage__intro {
+    width: auto;
+    padding: 0 var(--gutter);
+    gap: 14px;
+  }
+  .collage__word {
+    font-size: 6.5rem;
+  }
+  .collage__rows {
+    height: min(64dvh, 520px);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 0 var(--gutter) 10px;
+    scrollbar-width: none;
+  }
+}
+@media (min-width: 641px) and (max-height: 700px) {
+  .collage {
+    --rows: 2;
+  }
+}
+
+/* The viewer is always dark, whatever the page mode, so the photo is the brightest thing on screen */
+.viewer {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #120d0c;
+  color: #f2ebe7;
+  overflow: hidden;
+}
+.viewer::backdrop {
+  background: #120d0c;
+}
+.viewer[open] {
+  display: grid;
+  place-items: center;
+  animation: viewer-in 0.45s var(--ease-out);
+}
+.viewer__img {
+  max-width: calc(100vw - 2 * clamp(16px, 7vw, 96px));
+  max-height: calc(100dvh - 120px);
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 40px 70px -30px rgb(0 0 0 / 0.8);
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: opacity 0.25s var(--ease-out);
+}
+.viewer__img.is-loading {
+  opacity: 0.35;
+}
+.viewer__count {
+  position: absolute;
+  left: clamp(16px, 3vw, 32px);
+  top: calc(18px + env(safe-area-inset-top, 0px));
+  margin: 0;
+  color: #b9aca6;
+}
+.viewer__bar {
+  position: absolute;
+  right: clamp(8px, 2vw, 24px);
+  top: calc(8px + env(safe-area-inset-top, 0px));
+  display: flex;
+  gap: 4px;
+}
+.viewer__btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #f2ebe7;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-out);
+}
+.viewer__btn:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+.viewer__btn .icon {
+  width: 22px;
+  height: 22px;
+}
+.viewer__btn:focus-visible {
+  outline-color: #cf6476;
+}
+.viewer__nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+}
+.viewer__nav--prev {
+  left: clamp(4px, 1.5vw, 24px);
+}
+.viewer__nav--next {
+  right: clamp(4px, 1.5vw, 24px);
+}
+.viewer__nav:hover .icon {
+  transform: none;
+}
+@keyframes viewer-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (max-width: 640px) {
+  .viewer__img {
+    max-width: 100vw;
+    max-height: calc(100dvh - 140px);
+    border-radius: 0;
+  }
+  /* On phones the arrows move under the photo, where thumbs reach; swiping also works */
+  .viewer__nav {
+    top: auto;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    translate: none;
+  }
+  .viewer__nav--prev {
+    left: 25%;
+  }
+  .viewer__nav--next {
+    right: 25%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viewer[open] {
+    animation: none;
+  }
+}
+.viewer__btn[hidden] {
+  display: none;
+}
