@@ -1059,131 +1059,101 @@ a:hover .icon {
   }
 }
 
-/* ── Grad: a one-screen collage that scrolls sideways ────────────────── */
-.collage {
-  --rows: 3;
-  --gap: 8px;
-  display: flex;
-  gap: clamp(16px, 2.5vw, 36px);
-  height: var(--collage-h, calc(100dvh - 120px));
-  min-height: 420px;
-  padding: 0 var(--gutter) 14px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  scrollbar-width: thin;
-  scrollbar-color: var(--big) transparent;
-  animation: rise 1s var(--ease-out) both;
+/* ── Grad: the portraits as prints on a table ─────────────────────────── */
+.gv {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vh, 56px) var(--gutter) clamp(56px, 9vh, 104px);
 }
-.collage__intro {
-  flex: none;
-  width: 340px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
+.gv__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: end;
+  gap: 10px clamp(24px, 4vw, 56px);
+  margin-bottom: clamp(28px, 5vh, 48px);
 }
-.collage__word {
+.gv__title {
+  grid-row: span 2;
   font-family: var(--display);
   text-transform: uppercase;
   color: var(--big);
-  font-size: min(26dvh, 11.5rem);
+  font-size: clamp(6rem, 13vw, 11rem);
   line-height: 0.8;
   letter-spacing: 0.01em;
 }
-.collage__text {
-  display: grid;
-  gap: 18px;
-  font-size: 1.0625rem;
+.gv__lead {
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.5;
 }
-.collage__hint {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.gv__hint {
   color: var(--soft);
 }
-.collage__rows {
-  flex: none;
+.table {
   display: grid;
-  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
-  gap: var(--gap);
-  height: 100%;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(14px, 2.4vw, 34px) clamp(10px, 1.8vw, 26px);
+  margin: 0;
+  padding: 12px 6px 24px;
+  list-style: none;
 }
-.collage__row {
-  display: flex;
-  gap: var(--gap);
-  min-height: 0;
+.print {
+  rotate: var(--t);
+  transition: rotate 0.6s var(--ease-out), translate 0.6s var(--ease-out);
 }
-/* Without the script the photos still sit in a tidy wrapped grid */
-.collage__rows:not(.is-laid) {
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  width: 70vw;
-}
-.collage__rows:not(.is-laid) .shot {
-  height: 30%;
+.print:hover,
+.print:focus-within {
+  rotate: 0deg;
+  translate: 0 -6px;
+  z-index: 2;
 }
 .shot {
-  flex: none;
-  height: 100%;
-  aspect-ratio: var(--ar);
   display: block;
-  padding: 0;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 7px 7px 26px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 2px;
+  background: #fbf8f6;
+  box-shadow: 0 18px 26px -18px rgb(0 0 0 / 0.55), 0 2px 4px rgb(0 0 0 / 0.12);
   overflow: hidden;
-  background: var(--rule);
   cursor: zoom-in;
 }
 .shot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.2s var(--ease-out), filter 0.4s var(--ease-out);
+  border-radius: 1px;
 }
-.shot:hover img {
-  transform: scale(1.04);
-}
-.grad + .foot {
-  margin-top: 0;
+@media (max-width: 900px) {
+  .table {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 @media (max-width: 640px) {
-  .collage {
-    --rows: 2;
-    --gap: 6px;
-    flex-direction: column;
-    gap: 16px;
-    overflow: visible;
-    height: auto;
-    min-height: 0;
-    padding: 0;
+  .gv__head {
+    grid-template-columns: 1fr;
   }
-  .collage__intro {
-    width: auto;
-    padding: 0 var(--gutter);
-    gap: 14px;
-  }
-  .collage__word {
+  .gv__title {
+    grid-row: auto;
     font-size: 6.5rem;
   }
-  .collage__rows {
-    height: min(64dvh, 520px);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    padding: 0 var(--gutter) 10px;
-    scrollbar-width: none;
-  }
-}
-@media (min-width: 641px) and (max-height: 700px) {
-  .collage {
-    --rows: 2;
+  .table {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* The viewer is always dark, whatever the page mode, so the photo is the brightest thing on screen */
+/* ── Grad viewer: one print held up close on a dark table ─────────────── */
+/* The page behind can't scroll while it's open */
+html.is-viewing {
+  overflow: hidden;
+}
 .viewer {
+  --ink: #f2ebe7;
+  --mute: #9c8f8a;
+  --chrome: rgb(255 255 255 / 0.07);
+  position: fixed;
+  inset: 0;
   width: 100vw;
   height: 100dvh;
   max-width: none;
@@ -1191,112 +1161,185 @@ a:hover .icon {
   margin: 0;
   padding: 0;
   border: 0;
-  background: #120d0c;
-  color: #f2ebe7;
+  background: radial-gradient(120% 90% at 50% 45%, #241a18 0%, #120d0c 70%);
+  color: var(--ink);
   overflow: hidden;
+  overscroll-behavior: contain;
+  touch-action: none;
+  user-select: none;
 }
 .viewer::backdrop {
   background: #120d0c;
 }
 .viewer[open] {
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  animation: viewer-in 0.35s var(--ease-out);
+}
+.viewer__top,
+.viewer__bottom {
+  padding-inline: clamp(16px, 3vw, 36px);
+}
+.viewer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  padding-bottom: 6px;
+}
+.viewer__title {
+  margin: 0;
+  color: var(--mute);
+}
+.viewer__tools {
+  display: flex;
+  gap: 8px;
+}
+.viewer__stage {
+  display: grid;
   place-items: center;
-  animation: viewer-in 0.45s var(--ease-out);
+  min-height: 0;
+  padding: 10px clamp(16px, 4vw, 64px);
+  cursor: pointer;
+}
+.viewer__print {
+  --tilt: 0deg;
+  margin: 0;
+  padding: clamp(6px, 1vmin, 12px) clamp(6px, 1vmin, 12px) clamp(22px, 3.4vmin, 40px);
+  background: #fbf8f6;
+  border-radius: 2px;
+  box-shadow: 0 60px 90px -50px rgb(0 0 0 / 0.95), 0 6px 18px rgb(0 0 0 / 0.35);
+  transition: opacity 0.28s var(--ease-out), translate 0.4s var(--ease-out);
+  animation: print-up 0.6s var(--ease-out);
+}
+.viewer__print.is-leaving {
+  opacity: 0;
+  translate: var(--dx, 0) 0;
+  transition-duration: 0.18s;
 }
 .viewer__img {
-  max-width: calc(100vw - 2 * clamp(16px, 7vw, 96px));
-  max-height: calc(100dvh - 120px);
+  display: block;
   width: auto;
   height: auto;
-  border-radius: 4px;
-  box-shadow: 0 40px 70px -30px rgb(0 0 0 / 0.8);
-  user-select: none;
+  max-width: calc(100vw - 2 * clamp(16px, 4vw, 64px) - 24px);
+  max-height: calc(100dvh - 220px);
   -webkit-user-drag: none;
-  transition: opacity 0.25s var(--ease-out);
 }
-.viewer__img.is-loading {
-  opacity: 0.35;
+.viewer__bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px 24px;
+  padding-top: 8px;
+  padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+}
+.viewer__caption {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--mute);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.viewer__nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 .viewer__count {
-  position: absolute;
-  left: clamp(16px, 3vw, 32px);
-  top: calc(18px + env(safe-area-inset-top, 0px));
   margin: 0;
-  color: #b9aca6;
+  min-width: 4.6em;
+  text-align: center;
+  font-family: var(--display);
+  font-size: 2.25rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
-.viewer__bar {
-  position: absolute;
-  right: clamp(8px, 2vw, 24px);
-  top: calc(8px + env(safe-area-inset-top, 0px));
-  display: flex;
-  gap: 4px;
+.viewer__of {
+  margin-left: 6px;
+  font-size: 1.25rem;
+  color: var(--mute);
+}
+.viewer__keys {
+  justify-self: end;
+  margin: 0;
+  color: var(--mute);
 }
 .viewer__btn {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: transparent;
-  color: #f2ebe7;
+  background: var(--chrome);
+  color: var(--ink);
   cursor: pointer;
-  transition: background 0.3s var(--ease-out);
+  transition: background 0.3s var(--ease-out), transform 0.3s var(--ease-out);
 }
 .viewer__btn:hover {
-  background: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.16);
 }
-.viewer__btn .icon {
-  width: 22px;
-  height: 22px;
+.viewer__btn:active {
+  transform: scale(0.93);
 }
 .viewer__btn:focus-visible {
-  outline-color: #cf6476;
+  outline: 2px solid #cf6476;
+  outline-offset: 3px;
 }
-.viewer__nav {
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
+.viewer__btn .icon {
+  width: 20px;
+  height: 20px;
 }
-.viewer__nav--prev {
-  left: clamp(4px, 1.5vw, 24px);
-}
-.viewer__nav--next {
-  right: clamp(4px, 1.5vw, 24px);
-}
-.viewer__nav:hover .icon {
+.viewer__btn:hover .icon {
   transform: none;
+}
+.viewer__btn[hidden] {
+  display: none;
 }
 @keyframes viewer-in {
   from {
     opacity: 0;
   }
 }
+/* The print comes up off the table: from its tilt on the page to straight */
+@keyframes print-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px) rotate(var(--tilt)) scale(0.94);
+  }
+}
 @media (max-width: 640px) {
+  .viewer__stage {
+    padding-inline: 10px;
+  }
   .viewer__img {
-    max-width: 100vw;
-    max-height: calc(100dvh - 140px);
-    border-radius: 0;
+    max-width: calc(100vw - 20px - 16px);
+    max-height: calc(100dvh - 250px);
   }
-  /* On phones the arrows move under the photo, where thumbs reach; swiping also works */
-  .viewer__nav {
-    top: auto;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    translate: none;
+  .viewer__bottom {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
   }
-  .viewer__nav--prev {
-    left: 25%;
-  }
-  .viewer__nav--next {
-    right: 25%;
+  .viewer__keys {
+    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .viewer[open] {
+  .viewer[open],
+  .viewer__print {
     animation: none;
   }
+  .print {
+    transition: none;
+  }
 }
-.viewer__btn[hidden] {
-  display: none;
+.viewer__print:focus {
+  outline: none;
 }

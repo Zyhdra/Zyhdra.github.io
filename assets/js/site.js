@@ -77,93 +77,95 @@ if (deck) {
   layout();
 }
 
-// Grad: lay the photos into even rows, scroll them sideways, tap one for full screen.
-const gallery = document.querySelector("[data-gallery]");
+// Grad: tap a print to hold it up close; arrows, keys, a swipe, or tapping either side of the photo move through the set.
 const viewer = document.querySelector("[data-viewer]");
-const collage = document.querySelector("[data-collage]");
-if (gallery && viewer && collage) {
-  const shots = [...gallery.querySelectorAll(".shot")];
-  const ratio = (s) => { const [w, h] = s.style.getPropertyValue("--ar").split("/").map(Number); return w / h; };
-  let rowsNow = 0;
-  const lay = () => {
-    const rows = parseInt(getComputedStyle(collage).getPropertyValue("--rows"), 10) || 3;
-    // Fill the visible height on desktop; phones size the strip in CSS
-    if (getComputedStyle(collage).flexDirection === "row") {
-      collage.style.setProperty("--collage-h", `${Math.max(420, innerHeight - collage.getBoundingClientRect().top - 24 - scrollY)}px`);
-    }
-    if (rows === rowsNow) return;
-    rowsNow = rows;
-    // Each photo goes to whichever row is shortest so far, so the rows end close together
-    const lines = Array.from({ length: rows }, () => ({ el: Object.assign(document.createElement("div"), { className: "collage__row" }), w: 0 }));
-    // Step through the set seven at a time so look-alike frames from the same spot don't stack together
-    const spread = shots.map((s, i) => [s, (i * 7) % shots.length]).sort((a, b) => a[1] - b[1]).map(([s]) => s);
-    spread.forEach((s) => {
-      const line = lines.reduce((m, l) => (l.w < m.w ? l : m));
-      line.el.append(s);
-      line.w += ratio(s);
-    });
-    gallery.replaceChildren(...lines.map((l) => l.el));
-    gallery.classList.add("is-laid");
-  };
-  lay();
-  addEventListener("resize", lay);
-
-  // A mouse wheel scrolls the collage sideways until it reaches an end, then the page scrolls as usual
-  const scroller = () => (getComputedStyle(collage).flexDirection === "row" ? collage : gallery);
-  collage.addEventListener("wheel", (e) => {
-    const el = scroller();
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-    const max = el.scrollWidth - el.clientWidth;
-    if ((e.deltaY > 0 && el.scrollLeft < max - 1) || (e.deltaY < 0 && el.scrollLeft > 0)) {
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
-    }
-  }, { passive: false });
-
+const shots = [...document.querySelectorAll(".table .shot")];
+if (viewer && shots.length) {
+  const print = viewer.querySelector("[data-viewer-print]");
   const img = viewer.querySelector(".viewer__img");
   const count = viewer.querySelector("[data-viewer-count]");
+  const caption = viewer.querySelector("[data-viewer-caption]");
   const fullBtn = viewer.querySelector("[data-viewer-full]");
   const canFull = document.fullscreenEnabled;
+  const html = document.documentElement;
+  const wrap = (i) => (i + shots.length) % shots.length;
+  // "Steven smiling under the arch" reads better on its own as "Smiling under the arch"
+  const describe = (alt) => { const t = alt.replace(/^Steven /, ""); return t.charAt(0).toUpperCase() + t.slice(1) + "."; };
   let at = 0;
-  const show = (i) => {
-    at = (i + shots.length) % shots.length;
-    const s = shots[at];
-    img.classList.add("is-loading");
-    img.onload = () => img.classList.remove("is-loading");
+  let token = 0;
+  let keepOpen = false;
+
+  const paint = (i) => {
+    const s = shots[i];
     img.src = s.dataset.full;
     img.width = s.dataset.w;
     img.height = s.dataset.h;
     img.alt = s.querySelector("img").alt;
-    count.textContent = at + 1;
-    // Warm the neighbours so the next tap is instant
-    [at + 1, at - 1].forEach((n) => { new Image().src = shots[(n + shots.length) % shots.length].dataset.full; });
+    caption.textContent = describe(img.alt);
+    count.textContent = i + 1;
+    [i + 1, i - 1].forEach((n) => { new Image().src = shots[wrap(n)].dataset.full; });
+  };
+  // Slide the current print out, swap it once the next photo has loaded, then bring it back in
+  const go = (i, dir) => {
+    at = wrap(i);
+    const mine = ++token;
+    print.style.setProperty("--dx", `${dir * -24}px`);
+    print.classList.add("is-leaving");
+    const next = new Image();
+    next.src = shots[at].dataset.full;
+    const swap = () => {
+      if (mine !== token) return;
+      paint(at);
+      print.style.setProperty("--dx", `${dir * 24}px`);
+      requestAnimationFrame(() => print.classList.remove("is-leaving"));
+    };
+    Promise.all([next.decode().catch(() => {}), new Promise((r) => setTimeout(r, 180))]).then(swap);
+  };
+  const open = (i) => {
+    at = i;
+    paint(i);
+    print.classList.remove("is-leaving");
+    print.style.setProperty("--tilt", getComputedStyle(shots[i].closest(".print")).getPropertyValue("--t") || "0deg");
+    html.classList.add("is-viewing");
+    viewer.showModal();
+    if (canFull) viewer.requestFullscreen().catch(() => {});
   };
   const close = () => viewer.close();
-  shots.forEach((s, i) => s.addEventListener("click", () => {
-    show(i);
-    viewer.showModal();
-    // Go truly full screen where the browser allows it; iPhone Safari doesn't, and the viewer already fills the screen there
-    if (canFull) viewer.requestFullscreen().catch(() => {});
-  }));
-  viewer.querySelector("[data-viewer-prev]").addEventListener("click", () => show(at - 1));
-  viewer.querySelector("[data-viewer-next]").addEventListener("click", () => show(at + 1));
+
+  shots.forEach((s, i) => s.addEventListener("click", () => open(i)));
+  viewer.querySelector("[data-viewer-prev]").addEventListener("click", () => go(at - 1, -1));
+  viewer.querySelector("[data-viewer-next]").addEventListener("click", () => go(at + 1, 1));
   viewer.querySelector("[data-viewer-close]").addEventListener("click", close);
+  // Tapping the left or right part of the photo flips back or forward; tapping the empty table closes
+  viewer.querySelector("[data-viewer-stage]").addEventListener("click", (e) => {
+    if (!print.contains(e.target)) return close();
+    const r = print.getBoundingClientRect();
+    if (e.clientX < r.left + r.width / 2) go(at - 1, -1);
+    else go(at + 1, 1);
+  });
   viewer.addEventListener("close", () => {
+    html.classList.remove("is-viewing");
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     shots[at].focus({ preventScroll: true });
   });
-  // Leaving full screen with Esc also closes the viewer, so one key press gets you back to the collage
-  let keepOpen = false;
   document.addEventListener("fullscreenchange", () => {
     if (!document.fullscreenElement && viewer.open && !keepOpen) close();
     keepOpen = false;
   });
-  viewer.addEventListener("click", (e) => { if (e.target === viewer) close(); });
   viewer.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") show(at + 1);
-    if (e.key === "ArrowLeft") show(at - 1);
+    if (e.key === "ArrowRight") go(at + 1, 1);
+    if (e.key === "ArrowLeft") go(at - 1, -1);
   });
-  // The corner button toggles full screen while the viewer stays open
+  // Nothing inside the viewer scrolls; the wheel flips photos instead
+  let wheelAt = 0;
+  viewer.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(d) < 12 || Date.now() - wheelAt < 450) return;
+    wheelAt = Date.now();
+    go(at + (d > 0 ? 1 : -1), d > 0 ? 1 : -1);
+  }, { passive: false });
+  viewer.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
   if (!canFull) fullBtn.hidden = true;
   fullBtn.addEventListener("click", () => {
     if (document.fullscreenElement) { keepOpen = true; document.exitFullscreen().catch(() => {}); }
@@ -174,7 +176,7 @@ if (gallery && viewer && collage) {
   viewer.addEventListener("touchend", (e) => {
     if (x0 === null) return;
     const dx = e.changedTouches[0].clientX - x0;
-    if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 50) go(at + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
     x0 = null;
   });
 }
